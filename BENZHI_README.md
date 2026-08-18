@@ -14,10 +14,10 @@
 
 ## 标准构建 / 运行 / 测试命令
 
-编译（使用 vendor 离线构建，CGO 关闭）：
+编译（使用 Go module 模式，CGO 关闭）：
 
 ```bash
-CGO_ENABLED=0 GOTOOLCHAIN=local go build -mod=vendor ./...
+CGO_ENABLED=0 GOTOOLCHAIN=local go build ./...
 ```
 
 启动（默认监听 :8080，SQLite 文件 gosched.db）：
@@ -29,8 +29,8 @@ GOTOOLCHAIN=local go run . --addr :8080 --db gosched.db
 运行测试：
 
 ```bash
-CGO_ENABLED=0 GOTOOLCHAIN=local go test -mod=vendor ./...
-CGO_ENABLED=0 GOTOOLCHAIN=local go vet -mod=vendor ./...
+CGO_ENABLED=0 GOTOOLCHAIN=local go test ./...
+CGO_ENABLED=0 GOTOOLCHAIN=local go vet ./...
 ```
 
 自检（不依赖外部服务，执行后自行退出）：
@@ -49,7 +49,7 @@ bash build_benzhi_docker.sh gosched linux/amd64
 bash build_benzhi_docker.sh gosched linux/arm64
 ```
 
-镜像基于固定 `golang:1.26.3`，依赖由构建阶段自动下载（不需要把本机 `vendor/` 带入构建上下文）。容器启动后进入 shell，可手动 `go run . --smoke-test` 验证。
+镜像基于固定 `golang:1.26.3`，依赖由构建阶段自动下载。容器启动后进入 shell，可手动 `go run . --smoke-test` 验证。
 
 ## 主要 API（节选，完整见 internal/api）
 

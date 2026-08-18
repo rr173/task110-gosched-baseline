@@ -3,6 +3,8 @@ FROM golang:1.26.3
 
 WORKDIR /app
 
+ENV GOPROXY=https://goproxy.cn,direct GOSUMDB=sum.golang.google.cn GOTOOLCHAIN=local
+
 # 先复制依赖文件并下载依赖，利用 Docker 缓存并保证容器内可用
 COPY go.mod go.sum ./
 RUN go mod download

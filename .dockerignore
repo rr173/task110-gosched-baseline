@@ -1,6 +1,5 @@
-# Exclude the local vendor tree (the builder re-resolves deps from go.mod/go.sum
-# so we don't ship a 100MB+ context), test artifacts, DB files and binaries.
-vendor/
+# Exclude test artifacts, DB files and binaries.
+.git/
 *.db
 *.db-wal
 *.db-shm
