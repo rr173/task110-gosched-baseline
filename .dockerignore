@@ -1,0 +1,10 @@
+# Exclude test artifacts, DB files and binaries.
+.git/
+*.db
+*.db-wal
+*.db-shm
+*.test
+task110-gosched
+.idea/
+.vscode/
+.DS_Store
